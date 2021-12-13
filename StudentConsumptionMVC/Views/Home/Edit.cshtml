@@ -1,0 +1,61 @@
+﻿@model StudentConsumptionMVC.Models.Student 
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+  
+@{
+    ViewBag.Title = "Edit";
+}  
+@if (SignInManager.IsSignedIn(User))
+{
+    <h2>Edit User</h2>  
+  
+@using (Html.BeginForm()) {   
+  
+<div style="text-align:center">  
+  
+    <table> 
+        
+        <tr>  
+            <td>  
+                Student ID :   
+            </td>  
+            <td>   
+                @Html.TextBoxFor(m=>m.Stdid, new {value = Context.Request.Query["id"]} )  
+            </td>  
+        </tr>  
+        <tr>  
+            <td>  
+                Phone :   
+            </td>  
+            <td>   
+                @Html.TextBoxFor(m=>m.PhoneNumber)  
+            </td>  
+        </tr>  
+  
+         <tr>  
+            <td>  
+                Email :   
+            </td>  
+            <td>   
+                @Html.TextBoxFor(m=>m.Email)  
+            </td>  
+        </tr>  
+         <tr>  
+            <td>  
+                   
+            </td>  
+            <td>   
+               <input type="submit" value="Update" />  
+            </td>  
+        </tr>  
+    </table>  
+  
+</div>  
+    }
+
+} else
+{
+    Context.Response.Redirect("/Home/Index");
+}
+

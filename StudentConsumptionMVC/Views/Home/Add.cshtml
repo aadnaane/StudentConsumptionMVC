@@ -1,0 +1,76 @@
+﻿@model StudentConsumptionMVC.Models.Student  
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@using Microsoft.AspNetCore.Http
+  
+@{
+    ViewBag.Title = "Add a student";
+} 
+
+@if (SignInManager.IsSignedIn(User))
+{
+        <h2>Add a New Student</h2>  
+  
+    @using (Html.BeginForm()) {   
+  
+    <div style="text-align:center">  
+  
+        <table> 
+            <tr>  
+                <td>  
+                    Student ID :   
+                </td>  
+                <td>   
+                    @Html.TextBoxFor(m=>m.Stdid)  
+                </td>  
+            </tr
+            <tr>  
+                <td>  
+                    Name :   
+                </td>  
+                <td>   
+                    @Html.TextBoxFor(m=>m.Name)  
+                </td>  
+            </tr>
+            <tr>  
+                <td>  
+                    Email :   
+                </td>  
+                <td>   
+                    @Html.TextBoxFor(m=>m.Email)  
+                </td>  
+            </tr>
+
+            <tr>  
+                <td>  
+                    Phone Number :   
+                </td>  
+                <td>   
+                    @Html.TextBoxFor(m=>m.PhoneNumber)  
+                </td>  
+            </tr>  
+  
+             <tr>  
+                <td>  
+                    Gender :   
+                </td>  
+                <td>   
+                    @Html.TextBoxFor(m=>m.Gender)  
+                </td>
+               </tr>
+               <tr>
+                <td>   
+                    <input type="submit" value="Submit" />  
+                <td>
+            </tr>  
+           
+        </table>  
+  
+    </div>    
+    }
+}
+else
+{
+
+}

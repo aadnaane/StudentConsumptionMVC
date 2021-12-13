@@ -1,0 +1,68 @@
+﻿@model IEnumerable<StudentConsumptionMVC.Models.Student>  
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using(Html.BeginForm("Index", "Home", FormMethod.Get)) {  
+    //the following are search options  
+<text>Student ID: </text> 
+@Html.TextBox("search")
+<input type = "submit"value = "Search" />  
+}
+@if (SignInManager.IsSignedIn(User)) {
+    <table>
+        <tr>
+            <th>
+                Add a Student 
+            </th>
+            <th>
+                <a href="/Home/Add" >
+                    <img src="img/add.png" width=70 height=70/>
+                </a>
+            </th>
+        </tr>
+    </table>
+   
+}
+
+</a>
+
+    <table cellpadding = "15" border="4" margin-left = "auto" margin-right = "auto">
+            <tr>
+                <th> Student ID </th>
+                <th> Name       </th>
+                <th> Email      </th>
+                <th> Phone      </th>
+                <th> Gender     </th>
+                @if (SignInManager.IsSignedIn(User)) { 
+                    <th> Edit    </th>
+                    <th> Delete  </th>
+             }
+             </tr>
+       
+@{
+    foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.Stdid</th>
+            <th>@item.Name</th>
+            <th>@item.Email</th>
+            <th>@item.PhoneNumber</th>
+            <th>@item.Gender</th>
+             @if (SignInManager.IsSignedIn(User)) { 
+                    <th>
+                        @Html.ActionLink("Edit", "Edit", new { id = @item.Stdid })
+                    </th>
+                    <th>  
+                        @Html.ActionLink("Delete", "Delete", new { id = @item.Stdid })
+                    </th>
+             }
+        </tr>
+        
+    }
+} 
+
+</table>
